@@ -1,0 +1,622 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #3a3a3a;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.container {
+    max-width: 1600px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    font-size: 1.3rem;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+/* Card 1: Vista Previa Mueble */
+.vano-canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 15px;
+    width: 100%;
+}
+
+canvas {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 100%;
+    height: auto;
+    max-width: 550px;
+}
+
+.vano-resultados {
+    background: linear-gradient(135deg, #f5f7fa 0%, #f3f4f6 100%);
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.vano-resultado-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.vano-resultado-item:last-child {
+    border-bottom: none;
+}
+
+.vano-resultado-label {
+    font-weight: 600;
+    color: #555;
+    font-size: 14px;
+}
+
+.vano-resultado-valor {
+    font-size: 15px;
+    font-weight: 700;
+    color: #3a3a3a;
+}
+
+/* General inputs */
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #555;
+    font-size: 13px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input,
+select {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 13px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #3a3a3a;
+    box-shadow: 0 0 0 3px rgba(58, 58, 58, 0.2);
+}
+
+.unit {
+    color: #666;
+    font-weight: 500;
+    min-width: 50px;
+    font-size: 13px;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+button {
+    flex: 1;
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-calcular {
+    background: #3a3a3a;
+    color: white;
+}
+
+.btn-calcular:hover {
+    background: #2c2c2c;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-limpiar {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.btn-limpiar:hover {
+    background: #e0e0e0;
+}
+
+.resultados {
+    background: linear-gradient(135deg, #f5f7fa 0%, #f3f4f6 100%);
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.resultado-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.resultado-item:last-child {
+    border-bottom: none;
+}
+
+.resultado-label {
+    font-weight: 600;
+    color: #555;
+    font-size: 14px;
+}
+
+.resultado-valor {
+    font-size: 16px;
+    font-weight: 700;
+    color: #3a3a3a;
+}
+
+.separator {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 15px 0;
+}
+
+.readonly-input {
+    background: #f5f5f5;
+    color: #333;
+    font-weight: 600;
+}
+
+.peso-input {
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.info {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 10px;
+    color: #856404;
+}
+
+.info p {
+    margin: 3px 0;
+}
+
+.sistema {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 10px;
+    color: #aaa;
+}
+
+/* Card 3: Simulación Puerta */
+.door-simulation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+    padding: 55px 50px 50px 50px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.door-container {
+    position: relative;
+    display: inline-block;
+}
+
+.door {
+    background: #d0d0d0;
+    border: 3px solid #333;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    min-height: 180px;
+}
+
+.door-x2 {
+    position: absolute;
+    font-size: 22px;
+    font-weight: bold;
+    color: #e74c3c;
+    background: #d0d0d0;
+    padding: 8px 16px;
+    border-radius: 8px;
+    z-index: 5;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.dimension {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+    color: #e74c3c;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3px 7px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.l1-dim {
+    left: -55px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.l2-dim {
+    right: -55px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.a1-top-dim {
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.a2-bottom-dim {
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.door-container::before {
+    content: "";
+    position: absolute;
+    left: -30px;
+    top: 15px;
+    bottom: 15px;
+    width: 1px;
+    border-left: 1px dashed #e74c3c;
+    opacity: 0.4;
+}
+
+.door-container::after {
+    content: "";
+    position: absolute;
+    right: -30px;
+    top: 15px;
+    bottom: 15px;
+    width: 1px;
+    border-right: 1px dashed #e74c3c;
+    opacity: 0.4;
+}
+
+.door-medida {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c5aa0;
+    background: #d0d0d0;
+    padding: 4px 8px;
+    border-radius: 6px;
+    z-index: 5;
+    pointer-events: none;
+    white-space: nowrap;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* ============================================ */
+/* RESPONSIVE DESIGN COMPLETO */
+/* ============================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .container {
+        gap: 15px;
+    }
+    .card {
+        min-width: 280px;
+        padding: 15px;
+    }
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .door-simulation {
+        padding: 50px 45px 45px 45px;
+    }
+    .l1-dim {
+        left: -50px;
+        font-size: 11px;
+    }
+    .l2-dim {
+        right: -50px;
+        font-size: 11px;
+    }
+    .a1-top-dim {
+        top: -32px;
+        font-size: 11px;
+    }
+    .a2-bottom-dim {
+        bottom: -32px;
+        font-size: 11px;
+    }
+    .door-x2 {
+        font-size: 20px;
+        padding: 7px 14px;
+    }
+
+    .vano-resultado-label {
+        font-size: 14px;
+    }
+    .vano-resultado-valor {
+        font-size: 17px;
+    }
+    .resultado-label {
+        font-size: 13px;
+    }
+    .resultado-valor {
+        font-size: 15px;
+    }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .card {
+        min-width: 100%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+    .subtitle {
+        font-size: 11px;
+        margin-bottom: 12px;
+    }
+
+    .input-group {
+        margin-bottom: 12px;
+    }
+    label {
+        font-size: 12px;
+    }
+    input,
+    select {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+    .unit {
+        font-size: 12px;
+        min-width: 45px;
+    }
+
+    button {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .resultados {
+        padding: 12px;
+    }
+    .resultado-item {
+        padding: 8px 0;
+    }
+    .resultado-label {
+        font-size: 12px;
+    }
+    .resultado-valor {
+        font-size: 14px;
+    }
+
+    .vano-canvas-container {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    .vano-resultados {
+        padding: 12px;
+    }
+    .vano-resultado-item {
+        padding: 10px 0;
+    }
+    .vano-resultado-label {
+        font-size: 13px;
+    }
+    .vano-resultado-valor {
+        font-size: 16px;
+    }
+
+    .door-simulation {
+        padding: 45px 40px 40px 40px;
+        margin-bottom: 20px;
+    }
+    .l1-dim {
+        left: -45px;
+        font-size: 10px;
+        padding: 2px 5px;
+    }
+    .l2-dim {
+        right: -45px;
+        font-size: 10px;
+        padding: 2px 5px;
+    }
+    .a1-top-dim {
+        top: -30px;
+        font-size: 10px;
+        padding: 2px 5px;
+    }
+    .a2-bottom-dim {
+        bottom: -30px;
+        font-size: 10px;
+        padding: 2px 5px;
+    }
+    .door-x2 {
+        font-size: 18px;
+        padding: 6px 12px;
+    }
+
+    .door-container::before,
+    .door-container::after {
+        left: -25px;
+        right: -25px;
+    }
+
+    .info {
+        padding: 6px 8px;
+        margin-top: 12px;
+    }
+    .info p {
+        font-size: 9px;
+    }
+
+    .separator {
+        margin: 12px 0;
+    }
+}
+
+/* Celular pequeño */
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+    .card {
+        padding: 12px;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+    .subtitle {
+        font-size: 10px;
+    }
+
+    .door-simulation {
+        padding: 40px 35px 35px 35px;
+    }
+    .l1-dim {
+        left: -40px;
+        font-size: 9px;
+        padding: 2px 4px;
+    }
+    .l2-dim {
+        right: -40px;
+        font-size: 9px;
+        padding: 2px 4px;
+    }
+    .a1-top-dim {
+        top: -28px;
+        font-size: 9px;
+        padding: 2px 4px;
+    }
+    .a2-bottom-dim {
+        bottom: -28px;
+        font-size: 9px;
+        padding: 2px 4px;
+    }
+    .door-x2 {
+        font-size: 14px;
+        padding: 4px 8px;
+    }
+
+    .door-container::before,
+    .door-container::after {
+        left: -20px;
+        right: -20px;
+    }
+
+    .input-wrapper {
+        gap: 6px;
+    }
+    .unit {
+        min-width: 40px;
+        font-size: 11px;
+    }
+
+    .vano-resultado-label {
+        font-size: 12px;
+    }
+    .vano-resultado-valor {
+        font-size: 14px;
+    }
+    .resultado-label {
+        font-size: 11px;
+    }
+    .resultado-valor {
+        font-size: 13px;
+    }
+}
