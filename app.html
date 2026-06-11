@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Calculador D-52 + Vista Previa Mueble</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- CARD 1: VISTA PREVIA MUEBLE -->
+        <div class="card">
+            <h2>Vista Previa Mueble</h2>
+            <div class="subtitle">Closet - Medidas y estructura</div>
 
+            <div class="input-group">
+                <label>↔️ Ancho total del mueble</label>
+                <div class="input-wrapper">
+                    <input type="number" id="anchoTotalMueble" value="1600" min="600" max="2400" step="1">
+                    <span class="unit">mm</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>↕️ Altura total del mueble</label>
+                <div class="input-wrapper">
+                    <input type="number" id="altoTotalMueble" value="2000" min="1000" max="2200" step="1">
+                    <span class="unit">mm</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>⥮ Zócalo</label>
+                <div class="input-wrapper">
+                    <select id="zocaloMueble">
+                        <option value="0">0 mm</option>
+                        <option value="50">50 mm</option>
+                        <option value="100" selected>100 mm</option>
+                        <option value="120">120 mm</option>
+                        <option value="150">150 mm</option>
+                        <option value="170">170 mm</option>
+                        <option value="200">200 mm</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>🪵 Espesor del material</label>
+                <div class="input-wrapper">
+                    <select id="espesorMueble">
+                        <option value="15">15 mm</option>
+                        <option value="18" selected>18 mm</option>
+                        <option value="19">19 mm</option>
+                        <option value="20">20 mm</option>
+                        <option value="25">25 mm</option>
+                        <option value="30">30 mm</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="vano-canvas-container">
+                <canvas id="canvasMueble" width="550" height="480" style="width: 100%; height: auto; max-width: 550px;"></canvas>
+            </div>
+
+            <div class="vano-resultados">
+                <div class="vano-resultado-item">
+                    <span class="vano-resultado-label">⬌ Ancho interior útil (AV):</span>
+                    <span class="vano-resultado-valor" id="avResultado">--- mm</span>
+                </div>
+                <div class="vano-resultado-item">
+                    <span class="vano-resultado-label">⬍ Alto interior útil (HV):</span>
+                    <span class="vano-resultado-valor" id="hvResultado">--- mm</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 2: CALCULADOR D-52 -->
+        <div class="card">
+            <h2>Calculador D-52</h2>
+            <div class="subtitle">Sistema de Corredera para Closet - Puertas al piso</div>
+
+            <div class="input-group">
+                <label>⬌ Ancho interior útil (AV) - sincronizado</label>
+                <div class="input-wrapper">
+                    <input type="text" id="anchoUtilD52" readonly class="readonly-input" value="0">
+                    <span class="unit">mm</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>⬍ Alto interior útil (HV) - sincronizado</label>
+                <div class="input-wrapper">
+                    <input type="text" id="altoUtilD52" readonly class="readonly-input" value="0">
+                    <span class="unit">mm</span>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-calcular" onclick="calcularPuertasD52()">Calcular puertas</button>
+                <button class="btn-limpiar" onclick="limpiarFormularioD52()">🗑️ Limpiar</button>
+            </div>
+
+            <div class="resultados">
+                <div class="resultado-item">
+                    <span class="resultado-label">Ancho de puerta Terminada:</span>
+                    <span class="resultado-valor" id="anchoPuertaD52">--- mm</span>
+                </div>
+                <div class="resultado-item">
+                    <span class="resultado-label">Altura de puerta Terminada:</span>
+                    <span class="resultado-valor" id="altoPuertaD52">--- mm</span>
+                </div>
+                <div class="resultado-item">
+                    <span class="resultado-label">🔀 Traslape entre puertas:</span>
+                </div>
+                <div class="resultado-item">
+                    <span class="resultado-valor" id="traslapeD52">--- mm</span>
+                </div>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="input-group">
+                <label>Espesor de la puerta</label>
+                <div class="input-wrapper">
+                    <select id="espesorPuerta" onchange="calcularPesoD52()">
+                        <option value="15">15 mm</option>
+                        <option value="18">18 mm</option>
+                        <option value="19">19 mm</option>
+                        <option value="20" selected>20 mm</option>
+                        <option value="22">22 mm</option>
+                        <option value="25">25 mm</option>
+                        <option value="30">30 mm</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Densidad del material</label>
+                <div class="input-wrapper">
+                    <input type="number" id="densidadPuerta" value="650" step="10" onchange="calcularPesoD52()">
+                    <span class="unit">kg/m³</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Peso estimado de la puerta</label>
+                <div class="input-wrapper">
+                    <input type="text" id="pesoPuertaD52" readonly class="readonly-input peso-input" value="0">
+                    <span class="unit">kg</span>
+                </div>
+            </div>
+
+            <div class="info">
+                <p><strong>Fórmulas aplicadas (Sistema D-52):</strong></p>
+                <p>• Ancho puerta = (AV / 2) + 15 mm</p>
+                <p>• Alto puerta = HV − 15 mm</p>
+                <p>• AV = Ancho mueble − (2 × espesor material)</p>
+                <p>• HV = Alto mueble − (2 × espesor material) − zócalo</p>
+                <p>Peso = (Ancho final × Alto final × Espesor × Densidad) / 1,000,000,000</p>
+            </div>
+            <div class="sistema">
+                Sistema D-52 - Corredera al piso con clip de montaje rápido
+            </div>
+        </div>
+
+        <!-- CARD 3: SIMULACIÓN DE PUERTA -->
+        <div class="card">
+            <h2>Simulación de Puerta</h2>
+
+            <div class="door-simulation">
+                <div class="door-container">
+                    <div class="door" id="doorSim" style="width: 200px; height: 280px">
+                        <div class="door-medida" id="doorMedida">--- x --- mm</div>
+                        <div class="door-x2" id="doorX2">X 2</div>
+                    </div>
+                    <div class="dimension l1-dim" id="l1LabelSim">L1: -- mm</div>
+                    <div class="dimension l2-dim" id="l2LabelSim">L2: -- mm</div>
+                    <div class="dimension a1-top-dim" id="a1TopLabelSim">A1: -- mm</div>
+                    <div class="dimension a2-bottom-dim" id="a2BottomLabelSim">A2: -- mm</div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Espesor de Tapacanto al ANCHO</label>
+                <div class="input-wrapper">
+                    <select id="tapacantoAnchoSim" onchange="actualizarDescuentosSim()">
+                        <option value="0">0 mm</option>
+                        <option value="0.5">0.5 mm</option>
+                        <option value="1" selected>1 mm</option>
+                        <option value="2">2 mm</option>
+                        <option value="2.5">2.5 mm</option>
+                        <option value="3">3 mm</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Espesor de Tapacanto a la ALTURA</label>
+                <div class="input-wrapper">
+                    <select id="tapacantoAlturaSim" onchange="actualizarDescuentosSim()">
+                        <option value="0">0 mm</option>
+                        <option value="0.5">0.5 mm</option>
+                        <option value="1" selected>1 mm</option>
+                        <option value="2">2 mm</option>
+                        <option value="2.5">2.5 mm</option>
+                        <option value="3">3 mm</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Ancho de puerta para corte (mm)</label>
+                <div class="input-wrapper">
+                    <input type="text" id="anchoFinalSim" readonly class="readonly-input" value="0">
+                    <span class="unit">mm</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Altura de puerta para corte (mm)</label>
+                <div class="input-wrapper">
+                    <input type="text" id="altoFinalSim" readonly class="readonly-input" value="0">
+                    <span class="unit">mm</span>
+                </div>
+            </div>
+
+            <div class="info">
+                <p>📐 <strong>Cálculo de descuentos:</strong></p>
+                <p>• Tapacanto ALTURA → afecta L1 y L2 → resta al ANCHO final</p>
+                <p>• Tapacanto ANCHO → afecta A1 y A2 → resta al ALTO final</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
